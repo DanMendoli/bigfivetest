@@ -1,0 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'bigfivetest/form-pages.css' %}" />
+    <title>Abertura</title>
+  </head>
+  <body>
+    <main class="app-form-main-container">
+      <form class="app-form" action="/abertura/" method="post">
+        {% csrf_token %} {{ openness_form }}
+        <input type="submit" value="Resultado" />
+      </form>
+    </main>
+  </body>
+</html>

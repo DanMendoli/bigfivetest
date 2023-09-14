@@ -1,0 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'bigfivetest/form-pages.css' %}" />
+    <title>Neuroticismo</title>
+  </head>
+  <body>
+    <main class="app-form-main-container">
+      <form class="app-form" action="/neuroticismo/" method="post">
+        {% csrf_token %} {{ neuroticism_form }}
+        <input type="submit" value="Avançar" />
+      </form>
+    </main>
+  </body>
+</html>
