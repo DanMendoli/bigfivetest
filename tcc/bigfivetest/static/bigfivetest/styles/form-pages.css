@@ -1,0 +1,71 @@
+@import url("common.css");
+.app-form-main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dad9ff;
+  padding: 50px 0 50px 0;
+}
+.app-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 65%;
+  height: 100%;
+}
+.app-form label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #4c4eaf;
+  padding: 20px 0 20px 0;
+  width: 100%;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+div.app-form-question {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+  margin-bottom: 25px;
+  background-color: #ffffff;
+  padding: 20px 0 20px 0;
+  width: 100%;
+  gap: 4%;
+}
+.app-form-question div {
+  height: 100%;
+}
+.app-form-question div label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  color: rgb(27, 27, 27);
+  gap: 10px;
+}
+div label input[type="radio"].app-form-question {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(1.5);
+}
+.app-form-button {
+  margin-top: 25px;
+  border: none;
+  border-radius: 10px;
+  background-color: #4c4eaf;
+  cursor: pointer;
+  padding: 15px 25px;
+  width: 300px;
+  letter-spacing: 0.05rem;
+  color: white;
+  font-size: 1rem;
+}

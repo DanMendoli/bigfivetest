@@ -1,0 +1,44 @@
+/* font import */
+@import url("https://fonts.googleapis.com/css2?family=Inclusive+Sans&display=swap");
+
+/* reset css */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Inclusive Sans", sans-serif;
+}
+
+.header {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8vh;
+  background-color: #4c4eaf;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 110px;
+  width: 100%;
+  height: 8vh;
+}
+
+.header-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.header-logo {
+  width: 75px;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+}

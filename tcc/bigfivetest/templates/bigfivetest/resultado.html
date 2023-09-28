@@ -1,20 +1,49 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'bigfivetest/styles/results.css' %}"
+    />
     <title>Resultado</title>
 </head>
 <body>
-    <!-- <h1>Table de dados do IPIP-FFM</h1>
-    <br>
-    {{ final_data_table_html }}
-    <br><br>
-    <h1>Table de dados do usuário</h1>
-    {{ user_data_table_html }}
-    <br><br> -->
-    <h1>Table com o resultado do teste</h1>
-    {{ test_result_table_html }}
+    <header class="header">
+        <div class="header-container">
+            <div class="header-logo-container">
+            <a href="../"
+                ><img
+                class="header-logo"
+                src="{% static 'bigfivetest/images/logo-1.png' %}"
+                alt="logo"
+            /></a>
+            </div>
+            <div class="header-title-container">
+            <h1 class="header-title">Big Five Test</h1>
+            </div>
+        </div>
+    </header>
+    <div class="results-main-container">
+        <br><br>
+        <h1>Resultado do teste</h1>
+        <div style="width: 40%;">
+            {{ test_result_chart }}
+        </div>
+        <br><br>
+        <h1>Grupos de personalide ao redor do mundo</h1>
+        <div style="width: 40%;">
+        {{ personality_cluster_img }} 
+        </div>
+        <br><br>
+        <h1>A qual grupo de personalidade eu pertenço?</h1>
+        <p>Você pertence ao grupo: {{ predict_user_cluster }}</p>
+        <p>São um total de {{ user_cluster_count }} pessoas no seu grupo.</p>
+    </div>
 </body>
 </html>
 </body>

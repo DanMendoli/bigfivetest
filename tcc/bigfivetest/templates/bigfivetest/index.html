@@ -1,12 +1,63 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Teste De Personalidade "Big Five" com Clusterização de Dados</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'bigfivetest/styles/index.css' %}"
+    />
+    <title>Teste De Personalidade com Inteligência artificial</title>
   </head>
   <body>
-    <h1>TESTE BIG FIVE COM CLUSTERIZAÇÃO</h1>
-    <a href="/extroversao"><button>INICIAR TESTE</button></a>
+    <header class="header">
+      <div class="header-container">
+        <div class="header-logo-container">
+          <a href="../"
+            ><img
+              class="header-logo"
+              src="{% static 'bigfivetest/images/logo-1.png' %}"
+              alt="logo"
+          /></a>
+        </div>
+        <div class="header-title-container">
+          <h1 class="header-title">Big Five Test</h1>
+        </div>
+      </div>
+    </header>
+    <div class="main-container">
+      <div class="app-presentation-container">
+        <h1 class="title-1 home-title">
+          Bem-vindo ao Teste de Personalidade dos Cinco Grandes Fatores
+        </h1>
+        <p class="text-1 home-text">
+          Desbloqueie um entendimento mais profundo de si mesmo com a nossa
+          avaliação de personalidade, impulsionada pela inteligência artificial.
+          Descubra os traços que o definem e obtenha insights sobre o seu perfil
+          de personalidade único. <br /><br />
+          Nossos algoritmos analisarão suas respostas para fornecer uma visão
+          abrangente de sua personalidade através da lente do modelo dos Cinco
+          Grandes Fatores: Abertura, Conscienciosidade, Extroversão, Amabilidade
+          e Neuroticismo.
+          <br /><br />
+          Embarque nesta jornada de autodescoberta, onde a ciência encontra a
+          tecnologia para ajudá-lo a compreender melhor seus pontos fortes,
+          fraquezas e preferências. <br />
+          Seus resultados não apenas iluminarão o seu eu interior, mas também
+          oferecerão insights valiosos para o crescimento pessoal,
+          desenvolvimento profissional e muito mais.
+          <br /><br />
+          Vamos iniciar a aventura de desvendar o seu verdadeiro eu. Clique em
+          "Iniciar Teste" e deixe a nossa IA guiá-lo por esta experiência
+          esclarecedora.
+        </p>
+        <a href="/extroversao"
+          ><button class="app-button">INICIAR TESTE</button></a
+        >
+      </div>
+    </div>
   </body>
 </html>

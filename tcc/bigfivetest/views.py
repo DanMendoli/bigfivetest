@@ -11,7 +11,7 @@ import seaborn as sns
 from yellowbrick.cluster import KElbowVisualizer
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
-
+from sklearn.impute import SimpleImputer
 
 from .forms import ExtroversionForm, NeuroticismForm, AgreeablenessForm, ConscientiousnessForm, OpennessForm
 
@@ -76,14 +76,14 @@ def neuroticismo(request):
                 all_questions_responses = pd.concat(
                     [all_questions_responses, user_data], axis=1)
 
-            return redirect('agradabilidade')
+            return redirect('amabilidade')
     else:
         neuroticism_form = NeuroticismForm()
 
     return render(request, 'bigfivetest/neuroticismo.html', {'neuroticism_form': neuroticism_form})
 
 
-def agradabilidade(request):
+def amabilidade(request):
     global all_questions_responses  # add this line to access the global variable
     if request.method == 'POST':
         responses = []
@@ -110,7 +110,7 @@ def agradabilidade(request):
     else:
         agreeableness_form = AgreeablenessForm()
 
-    return render(request, 'bigfivetest/agradabilidade.html', {'agreeableness_form': agreeableness_form})
+    return render(request, 'bigfivetest/amabilidade.html', {'agreeableness_form': agreeableness_form})
 
 
 def conscienciosidade(request):
@@ -174,41 +174,42 @@ def abertura(request):
 
 
 def resultado(request):
-    # data_raw = pd.read_csv('bigfivetest/data/data-final.csv', sep='\t')
-    # data = data_raw.copy()
-    # pd.options.display.max_columns = 150
+    data_raw = pd.read_csv('bigfivetest/data/data-final.csv', sep='\t')
+    data = data_raw.copy()
+    data.dropna(inplace=True)
+    pd.options.display.max_columns = 150
 
-    # from sklearn.impute import SimpleImputer
+    # exclude non-numeric columns from imputation
+    numeric_cols = data.select_dtypes(include='number').columns
+    imputer = SimpleImputer(strategy='mean')
+    data[numeric_cols] = imputer.fit_transform(data[numeric_cols])
 
-    # # exclude non-numeric columns from imputation
-    # numeric_cols = data.select_dtypes(include='number').columns
-    # imputer = SimpleImputer(strategy='mean')
-    # data[numeric_cols] = imputer.fit_transform(data[numeric_cols])
+    data.drop(data.columns[50:107], axis=1, inplace=True)
+    data.drop(data.columns[51:], axis=1, inplace=True)
 
-    # data.drop(data.columns[50:107], axis=1, inplace=True)
-    # data.drop(data.columns[51:], axis=1, inplace=True)
+    df_model = data.drop('country', axis=1)
 
-    # final_data_table_html = '<table style="width:100%; border-collapse: collapse; border: 1px solid black;">'
+    final_data_table_html = '<table style="width:100%; border-collapse: collapse; border: 1px solid black;">'
 
-    # # add table header
-    # final_data_table_html += '<thead><tr>'
-    # for col in data.head().columns:
-    #     final_data_table_html += f'<th style="border: 1px solid black; padding: 5px;">{col}</th>'
-    # final_data_table_html += '</tr></thead>'
+    # add table header
+    final_data_table_html += '<thead><tr>'
+    for col in data.head().columns:
+        final_data_table_html += f'<th style="border: 1px solid black; padding: 5px;">{col}</th>'
+    final_data_table_html += '</tr></thead>'
 
-    # # add table body
-    # final_data_table_html += '<tbody>'
-    # for i in range(len(data.head())):
-    #     final_data_table_html += '<tr>'
-    #     for col in data.head().columns:
-    #         final_data_table_html += f'<td style="border: 1px solid black; padding: 5px;">{data.head().iloc[i][col]}</td>'
-    #     final_data_table_html += '</tr>'
-    # final_data_table_html += '</tbody></table>'
+    # add table body
+    final_data_table_html += '<tbody>'
+    for i in range(len(data.head())):
+        final_data_table_html += '<tr>'
+        for col in data.head().columns:
+            final_data_table_html += f'<td style="border: 1px solid black; padding: 5px;">{data.head().iloc[i][col]}</td>'
+        final_data_table_html += '</tr>'
+    final_data_table_html += '</tbody></table>'
 
     # --------------------------------------------------------------------------------------------------------------
     # add this line to access the global variable
     global all_questions_responses
-    # add table header
+    # # add table header
     # user_data_table_html = '<table style="width:100%; border-collapse: collapse; border: 1px solid black;">'
 
     # user_data_table_html += '<thead><tr>'
@@ -225,50 +226,47 @@ def resultado(request):
     #     user_data_table_html += '</tr>'
     # user_data_table_html += '</tbody></table>'
 
-    # df_model = data.drop('country', axis=1)
+    # Defining 5 clusters and fitting the model
+    kmeans = KMeans(n_clusters=5)
+    k_fit = kmeans.fit(df_model)
 
-    # # Defining 5 clusters and fitting the model
-    # kmeans = KMeans(n_clusters=5)
-    # k_fit = kmeans.fit(df_model)
-
-    # # Predicting the clusters
-    # pd.options.display.max_columns = 10
-    # predictions = k_fit.labels_
-    # df_model['Clusters'] = predictions
-    # # lembrar de apagar os prints
-    # pd.options.display.max_columns = 150
-    # print(df_model.groupby('Clusters').mean())
-    # # lembrar de apagar os prints
+    # Predicting the clusters
+    pd.options.display.max_columns = 10
+    predictions = k_fit.labels_
+    df_model['Clusters'] = predictions
+    # lembrar de apagar os prints
+    pd.options.display.max_columns = 150
+    # lembrar de apagar os prints
 
     # Summing up the different questions groups
-    # col_list = list(df_model)
-    # ext = col_list[0:10]
-    # est = col_list[10:20]
-    # agr = col_list[20:30]
-    # csn = col_list[30:40]
-    # opn = col_list[40:50]
+    col_list = list(df_model)
+    ext = col_list[0:10]
+    est = col_list[10:20]
+    agr = col_list[20:30]
+    csn = col_list[30:40]
+    opn = col_list[40:50]
 
-    # data_sums = pd.DataFrame()
-    # data_sums['extroversao'] = df_model[ext].sum(axis=1)/10
-    # data_sums['neuroticidade'] = df_model[est].sum(axis=1)/10
-    # data_sums['agradabilidade'] = df_model[agr].sum(axis=1)/10
-    # data_sums['conscienciosidade'] = df_model[csn].sum(axis=1)/10
-    # data_sums['abertura'] = df_model[opn].sum(axis=1)/10
-    # data_sums['clusters'] = predictions
-    # print(data_sums.groupby('clusters').mean())
+    data_sums = pd.DataFrame()
+    data_sums['extroversao'] = df_model[ext].sum(axis=1)/10
+    data_sums['neuroticidade'] = df_model[est].sum(axis=1)/10
+    data_sums['amabilidade'] = df_model[agr].sum(axis=1)/10
+    data_sums['conscienciosidade'] = df_model[csn].sum(axis=1)/10
+    data_sums['abertura'] = df_model[opn].sum(axis=1)/10
+    data_sums['Grupos'] = predictions
 
     # Visualizing the means for each cluster
     # data_clusters = data_sums.groupby('clusters').mean()
     # plt.figure(figsize=(22, 3))
     # for i in range(0, 5):
     #     plt.subplot(1, 5, i+1)
-    #     plt.bar(data_clusters.columns, data_clusters.iloc[:, i], color='green', alpha=0.2)
+    #     plt.bar(data_clusters.columns,
+    #             data_clusters.iloc[:, i], color='green', alpha=0.2)
     #     plt.plot(data_clusters.columns, data_clusters.iloc[:, i], color='red')
     #     plt.title('Cluster ' + str(i))
     #     plt.xticks(rotation=45)
     #     plt.ylim(0, 4)
 
-    # Save the figure to a BytesIO object
+    # # Save the figure to a BytesIO object
     # import io
     # buf = io.BytesIO()
     # plt.savefig(buf, format='png')
@@ -277,12 +275,38 @@ def resultado(request):
     # # Embed the image in the HTML page
     # import base64
     # img_data = base64.b64encode(buf.read()).decode('utf-8')
-    # img_tag = f'<img src="data:image/png;base64,{img_data}">'
+    # img_tag = f'<img src="data:image/png;base64,{img_data}" style="width: 100%;">'
+
+    # visualizing cluster predicitons
+    pca = PCA(n_components=2)
+    pca.fit = pca.fit_transform(df_model)
+
+    df_pca = pd.DataFrame(data=pca.fit, columns=['X', 'Y'])
+    df_pca['Grupos'] = predictions
+    df_pca['Grupos'] += 1
+
+    plt.figure(figsize=(10, 10))
+    sns.scatterplot(x='X', y='Y', hue='Grupos', data=df_pca, palette=[
+                    '#FCD0A1', '#B1B695', '#A690A4', '#5E4B56', '#AFD2E9'])
+
+    # Save the figure to a BytesIO object
+    import io
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+
+    # Embed the image in the HTML page
+    import base64
+    img_data = base64.b64encode(buf.read()).decode('utf-8')
+    personality_cluster_img = f'<img src="data:image/png;base64,{img_data}" style="width: 100%;">'
 
     if not all_questions_responses.empty and not all_questions_responses.isnull().values.any():
-        # predict_user_data = k_fit.predict(all_questions_responses)
-        # print('User data cluster', predict_user_data)
-        # print('User all questions type', type(all_questions_responses))
+        # Predicting the cluster for the user
+        # Este código faz a predição do cluster do usuário com base nas respostas dadas pelo usuário em um questionário. Ele utiliza o modelo de KMeans previamente treinado para agrupar as respostas do usuário em um dos cinco clusters definidos. A variável all_questions_responses contém as respostas do usuário em formato de DataFrame, e a variável k_fit contém o modelo de KMeans treinado. A predição é armazenada na variável predict_user_cluster.
+        predict_user_cluster = k_fit.predict(all_questions_responses)[0]
+
+        cluster_counts = df_model['Clusters'].value_counts()
+        user_cluster_count = cluster_counts[predict_user_cluster]
 
         user_col_list = list(all_questions_responses)
         user_ext = user_col_list[0:10]
@@ -291,7 +315,6 @@ def resultado(request):
         user_csn = user_col_list[30:40]
         user_opn = user_col_list[40:50]
 
-        # Assuming all_questions_responses is a pandas DataFrame
         all_questions_responses[user_ext] = all_questions_responses[user_ext].astype(
             int)
         all_questions_responses[user_est] = all_questions_responses[user_est].astype(
@@ -314,27 +337,26 @@ def resultado(request):
             axis=1)/10
         user_data_sums['Abertura'] = all_questions_responses[user_opn].sum(
             axis=1)/10
-        # print("Sum of user question groups:")
-        # print(user_data_sums)
 
-        # create table for results
-        test_result_table_html = '<table style="width:100%; border-collapse: collapse; border: 1px solid black;">'
-        # add table header
-        test_result_table_html += '<thead><tr>'
-        for col in user_data_sums.columns:
-            test_result_table_html += f'<th style="border: 1px solid black; padding: 5px;">{col}</th>'
-        test_result_table_html += '</tr></thead>'
+        # create bar chart
+        plt.figure(figsize=(10, 5))
+        plt.bar(user_data_sums.columns, user_data_sums.iloc[0])
+        plt.xlabel('Fatores de Personalidade')
+        plt.ylabel('Pontuação')
+        plt.ylim(0, 5)
 
-        # add table body
-        test_result_table_html += '<tbody>'
-        for i in range(len(user_data_sums)):
-            test_result_table_html += '<tr>'
-            for col in user_data_sums.columns:
-                test_result_table_html += f'<td style="border: 1px solid black; padding: 5px;">{user_data_sums.iloc[i][col]}</td>'
-            test_result_table_html += '</tr>'
-        test_result_table_html += '</tbody></table>'
+        # Save the figure to a BytesIO object
+        import io
+        buf = io.BytesIO()
+        plt.savefig(buf, format='png')
+        buf.seek(0)
+
+        # Embed the image in the HTML page
+        import base64
+        img_data = base64.b64encode(buf.read()).decode('utf-8')
+        test_result_chart = f'<img src="data:image/png;base64,{img_data}" style="width: 100%;">'
 
     else:
         print('Error: all_questions_responses is empty or has missing values')
 
-    return render(request, 'bigfivetest/resultado.html', {'test_result_table_html': mark_safe(test_result_table_html)})
+    return render(request, 'bigfivetest/resultado.html', {'test_result_chart': mark_safe(test_result_chart), 'predict_user_cluster': mark_safe(predict_user_cluster + 1), 'personality_cluster_img': mark_safe(personality_cluster_img), 'user_cluster_count': mark_safe(user_cluster_count)})

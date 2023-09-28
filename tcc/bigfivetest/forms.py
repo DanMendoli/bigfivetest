@@ -1,18 +1,22 @@
 from django import forms
 
+
 def create_personality_form(trait_name, questions):
     QUESTION_OPTIONS = (
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4'),
-        ('5', '5'),
+        ('1', 'Discordo fortemente'),
+        ('2', 'Discordo um pouco'),
+        ('3', 'Neutro(a)'),
+        ('4', 'Concordo um pouco'),
+        ('5', 'Concordo fortemente'),
     )
     fields = {}
+
     for i, question in enumerate(questions):
         field_name = f"question_{i+1}"
-        fields[field_name] = forms.ChoiceField(label=question, choices=QUESTION_OPTIONS, widget=forms.RadioSelect(attrs={'class': 'app-form-question'}))
+        fields[field_name] = forms.ChoiceField(
+            label=question, choices=QUESTION_OPTIONS, widget=forms.RadioSelect(attrs={'class': 'app-form-question'}))
     return type(f"{trait_name}Form", (forms.Form,), fields)
+
 
 ExtroversionForm = create_personality_form("Extroversion", [
     'Eu sou a alma da festa.',
