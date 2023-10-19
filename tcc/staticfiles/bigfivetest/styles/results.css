@@ -1,10 +1,46 @@
 @import url("common.css");
-
 .results-main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #dad9ff;
+  background-color: #ffffff;
   padding: 50px 0 50px 0;
+}
+.results-title {
+  text-align: center;
+  font-size: 1.5rem;
+}
+.results-text {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.percentiles {
+  background-color: #4c4eaf;
+  padding: 10px 20px;
+  color: #ffffff;
+  width: 65%;
+}
+.results-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  width: 40%;
+}
+@media screen and (max-width: 768px) {
+  .results-image-container {
+    width: 100%;
+  }
+  .results-title {
+    font-size: 1.25rem;
+  }
+  .results-text {
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 1rem;
+  }
 }

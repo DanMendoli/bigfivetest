@@ -1,9 +1,10 @@
 @import url("common.css");
+/* Estilos para telas maiores que 768px */
 .app-form-main-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #dad9ff;
+  background-color: #e2e1ff;
   padding: 50px 0 50px 0;
 }
 .app-form {
@@ -68,4 +69,28 @@ div label input[type="radio"].app-form-question {
   letter-spacing: 0.05rem;
   color: white;
   font-size: 1rem;
+}
+.app-form-button:hover {
+  background-color: #3a3c8e;
+}
+/* Estilos para telas menores que 768px */
+@media only screen and (max-width: 768px) {
+  .app-form {
+    width: 90%;
+  }
+  .app-form label {
+    font-size: 0.9rem;
+  }
+  div.app-form-question {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  div label input[type="radio"].app-form-question {
+    transform: scale(1.2);
+  }
+  .app-form-button {
+    width: 100%;
+  }
 }

@@ -9,6 +9,10 @@
   font-family: "Inclusive Sans", sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 .header {
   top: 0;
   left: 0;
@@ -21,7 +25,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 110px;
+  padding: 10px 8%;
   width: 100%;
   height: 8vh;
 }
@@ -34,11 +38,41 @@
 }
 
 .header-logo {
-  width: 75px;
+  width: 55px;
+}
+
+.header-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
+  height: 100%;
 }
 
 .header-title {
   font-size: 1.5rem;
   font-weight: 600;
   color: white;
+}
+.header-what-is-big-five {
+  font-size: 1rem;
+  font-weight: 400;
+  color: white;
+}
+@media screen and (max-width: 768px) {
+  .header-container {
+    padding: 10px 20px;
+  }
+
+  .header-logo {
+    width: 40px;
+  }
+
+  .header-title {
+    font-size: 1.25rem;
+  }
+
+  .header-what-is-big-five {
+    font-size: 0.75rem;
+  }
 }

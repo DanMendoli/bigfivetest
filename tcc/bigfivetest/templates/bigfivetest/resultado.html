@@ -15,34 +15,46 @@
 <body>
     <header class="header">
         <div class="header-container">
-            <div class="header-logo-container">
-            <a href="../"
-                ><img
+          <div class="header-logo-container">
+            <a href="../">
+              <img
                 class="header-logo"
-                src="{% static 'bigfivetest/images/logo-1.png' %}"
+                src="{% static 'bigfivetest/images/logo.png' %}"
                 alt="logo"
             /></a>
-            </div>
-            <div class="header-title-container">
+          </div>
+          <div class="header-title-container">
             <h1 class="header-title">Big Five Test</h1>
-            </div>
+            <a href="/o-que-e-big-five"
+              ><h3 class="header-what-is-big-five">
+                O que é o Modelo Big Five?
+              </h3></a
+            >
+          </div>
         </div>
     </header>
     <div class="results-main-container">
-        <br><br>
-        <h1>Resultado do teste</h1>
-        <div style="width: 40%;">
+        <br /><br />
+        <h1 class="results-title">Resultados do meu teste</h1>
+        <div class="results-image-container">
             {{ test_result_chart }}
         </div>
-        <br><br>
-        <h1>Grupos de personalide ao redor do mundo</h1>
-        <div style="width: 40%;">
+        <br /><br />
+        <h1 class="results-title">Grupos de personalide ao redor do mundo</h1>
+        <div class="results-image-container">
         {{ personality_cluster_img }} 
         </div>
-        <br><br>
-        <h1>A qual grupo de personalidade eu pertenço?</h1>
-        <p>Você pertence ao grupo: {{ predict_user_cluster }}</p>
-        <p>São um total de {{ user_cluster_count }} pessoas no seu grupo.</p>
+        <br /><br />
+        <h1 class="results-title">Você pertence ao grupo: {{ predict_user_cluster }}</h1>
+        <p class="results-text percentiles">São um total de aproximadamente {{ user_cluster_count }} pessoas no seu grupo.</p>
+        <p class="results-text percentiles">Você é {{ more_less_extroversion }} extrovertido(a) que as pessoas do seu grupo.</p>
+        <p class="results-text percentiles">Você é {{ more_less_neuroticism }} neurótico(a) que as pessoas do seu grupo.</p>
+        <p class="results-text percentiles">Você é {{ more_less_agreeableness }} amável que as pessoas do seu grupo.</p>
+        <p class="results-text percentiles">Você é {{ more_less_conscientiousness }} consciente que as pessoas do seu grupo.</p>
+        <p class="results-text percentiles">Você é {{ more_less_openness }} aberto a experiências que as pessoas do seu grupo.</p>
+        <br /><br />
+        <h1 class="results-title">Descrição detalhada do seu resultado</h1>
+        <p class="results-text personality-factor-message">{{ personality_factor_messages_values }}</p>
     </div>
 </body>
 </html>

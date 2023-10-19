@@ -1,7 +1,7 @@
 @import url("common.css");
-
+/* Default styles */
 .main-container {
-  padding: 50px 100px;
+  padding: 50px 8%;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -41,4 +41,33 @@
   letter-spacing: 0.05rem;
   color: white;
   font-size: 1.2rem;
+}
+.app-button:hover {
+  background-color: #3a3c8e;
+}
+@media only screen and (max-width: 768px) {
+  .main-container {
+    padding: 50px;
+  }
+  .app-presentation-container {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .main-container {
+    padding: 25px;
+  }
+  .app-presentation-container {
+    padding: 10px;
+  }
+  .title-1 {
+    font-size: 1.5rem;
+  }
+  .text {
+    font-size: 1rem;
+  }
+  .app-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
 }

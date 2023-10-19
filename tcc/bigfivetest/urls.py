@@ -10,4 +10,5 @@ urlpatterns = [
     path('amabilidade/', views.amabilidade, name='amabilidade'),
     path('conscienciosidade/', views.conscienciosidade, name='conscienciosidade'),
     path('abertura/', views.abertura, name='abertura'),
+    path('o-que-e-big-five/', views.oqueebigfive, name='oqueebigfive')
 ]
