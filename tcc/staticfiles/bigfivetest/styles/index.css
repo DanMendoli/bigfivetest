@@ -1,7 +1,7 @@
 @import url("common.css");
 /* Default styles */
 .main-container {
-  padding: 50px 100px;
+  padding: 50px 8%;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -45,7 +45,6 @@
 .app-button:hover {
   background-color: #3a3c8e;
 }
-/* Media queries for smaller screens */
 @media only screen and (max-width: 768px) {
   .main-container {
     padding: 50px;
@@ -54,7 +53,6 @@
     width: 100%;
   }
 }
-/* Media queries for even smaller screens */
 @media only screen and (max-width: 480px) {
   .main-container {
     padding: 25px;

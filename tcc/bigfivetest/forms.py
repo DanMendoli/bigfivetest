@@ -1,6 +1,7 @@
 from django import forms
 
 
+# modelo de formulário para o teste de personalidade
 def create_personality_form(trait_name, questions):
     QUESTION_OPTIONS = (
         ('1', 'Discordo fortemente'),
@@ -18,6 +19,7 @@ def create_personality_form(trait_name, questions):
     return type(f"{trait_name}Form", (forms.Form,), fields)
 
 
+# formulário de extroversão
 ExtroversionForm = create_personality_form("Extroversion", [
     'Eu sou a alma da festa.',
     'Eu não falo muito.',
@@ -31,6 +33,7 @@ ExtroversionForm = create_personality_form("Extroversion", [
     'Eu sou quieto(a) com estranhos.',
 ])
 
+# formulário de neuroticismo
 NeuroticismForm = create_personality_form("Neuroticism", [
     'Eu me estresso facilmente.',
     'Eu estou relaxado(a) na maior parte do tempo.',
@@ -44,6 +47,7 @@ NeuroticismForm = create_personality_form("Neuroticism", [
     'Eu frequentemente me sinto triste.',
 ])
 
+# formulário de agradabilidade
 AgreeablenessForm = create_personality_form("Agreeableness", [
     'Eu sinto pouca preocupação pelos outros.',
     'Eu tenho interesse nas pessoas.',
@@ -57,6 +61,7 @@ AgreeablenessForm = create_personality_form("Agreeableness", [
     'Eu faço as pessoas se sentirem à vontade.',
 ])
 
+# formulário de conscienciosidade
 ConscientiousnessForm = create_personality_form("Conscientiousness", [
     'Eu estou sempre preparado(a).',
     'Eu deixo minhas coisas espalhadas.',
@@ -70,6 +75,7 @@ ConscientiousnessForm = create_personality_form("Conscientiousness", [
     'Eu sou exigente no meu trabalho.',
 ])
 
+# formulário de abertura
 OpennessForm = create_personality_form("Openness", [
     'Eu tenho um vocabulário rico.',
     'Eu tenho dificuldade em entender ideias abstratas.',

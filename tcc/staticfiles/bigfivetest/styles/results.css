@@ -14,13 +14,20 @@
 .results-text {
   margin-top: 1rem;
   margin-bottom: 1rem;
+  padding: 10px 20px;
   text-align: center;
   font-size: 1.2rem;
 }
 .percentiles {
-  background-color: #4c4eaf;
+  position: relative;
+  background-color: #e2e1ff;
   padding: 10px 20px;
-  color: #ffffff;
+  width: 65%;
+  color: #000000;
+}
+.personality-factor-message {
+  background-color: #e2e1ff;
+  padding: 20px 40px;
   width: 65%;
 }
 .results-image-container {
@@ -36,11 +43,18 @@
     width: 100%;
   }
   .results-title {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
+    padding: 0 25px;
   }
   .results-text {
-    padding-right: 10px;
-    padding-left: 10px;
+    padding: 25px;
     font-size: 1rem;
+  }
+  .percentiles {
+    width: 80%;
+  }
+
+  .personality-factor-message {
+    width: 80%;
   }
 }
