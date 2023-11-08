@@ -49,7 +49,7 @@ A versão da linguagem Python utilizada para o desenvolvimento do projeto foi a 
 
 Antes de qualquer coisa, é necessário realizar o download do arquivo .csv utilizado para processo de clusterização dos dados. O arquivo pode ser encontrado [aqui](https://openpsychometrics.org/_rawdata/IPIP-FFM-data-8Nov2018.zip). Após o download, basta descompactar o .zip e colocar o arquivo chamado "_data-final.csv_" na pasta _data_, que pode ser acessar pelo caminho: `tcc/bigfivetest/data/`.
 
-Após instalar as dependências em um ambiente virtual ou na instalação padrão do Python em sua máquina, basta executar seguir os seguintes passos, de acordo com o local onde foram instaladas as dependências:
+Após instalar as dependências em um ambiente virtual ou na instalação padrão do Python em sua máquina, basta seguir os seguintes passos, de acordo com o local onde foram instaladas as dependências:
 
 ### Ambiente virtual:
 
