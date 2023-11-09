@@ -4,11 +4,11 @@ _Esta é uma aplicação web desenvolvida em Python e Django que fornece um test
 
 ## Introdução
 
-A aplicação consiste em uma página inicial que apresenta uma breve introdução sobre o teste de personalidade baseado no modelo Big Five. Em seguida, há cinco páginas com 10 questões cada, sendo que cada página contém perguntas referentes a um fator de personalidade. Após responder todas as perguntas, o usuário é direcionado para uma página com os resultados do teste, que apresenta uma análise dos traços de personalidade do usuário com base nas respostas dadas. Há na aplicação também uma página dedicada a explicar o que é o Modelo das Cinco Grandes Personalidade (Big Five Model).
+A aplicação consiste em uma página inicial que apresenta uma breve introdução sobre o teste de personalidade baseado no modelo _Big Five_. Em seguida, há cinco páginas com 10 questões cada, sendo que cada página contém perguntas referentes a um fator de personalidade. Após responder todas as perguntas, o usuário é direcionado para uma página com os resultados do teste, que apresenta uma análise dos traços de personalidade do usuário com base nas respostas dadas. Há na aplicação também uma página dedicada a explicar o que é o _Modelo das Cinco Grandes Personalidades (Big Five Model)_.
 
 ## Dependências
 
-Existe no repositório um arquivo chamado requirements.txt que contém todas as dependências necessárias para rodar a aplicação. Para instalar as dependências, basta executar o seguinte comando no terminal:
+Existe no repositório um arquivo chamado _requirements.txt_ que contém todas as dependências necessárias para rodar a aplicação. Para instalar as dependências, basta executar o seguinte comando no terminal:
 
 ```
 pip install -r requirements.txt
@@ -43,11 +43,11 @@ tzdata==2023.3
 yellowbrick==1.5
 ```
 
-A versão da linguagem Python utilizada para o desenvolvimento do projeto foi a 3.11.4.
+A versão da linguagem Python utilizada para o desenvolvimento do projeto foi a _3.11.4_.
 
 ## Executando a aplicação localmente
 
-Antes de qualquer coisa, é necessário realizar o download do arquivo .csv utilizado para processo de clusterização dos dados. O arquivo pode ser encontrado [aqui](https://openpsychometrics.org/_rawdata/IPIP-FFM-data-8Nov2018.zip). Após o download, basta descompactar o .zip e colocar o arquivo chamado "_data-final.csv_" na pasta _data_, que pode ser acessar pelo caminho: `tcc/bigfivetest/data/`.
+Antes de qualquer coisa, é necessário realizar o download do arquivo _.csv_ utilizado para processo de clusterização dos dados. O arquivo pode ser encontrado [aqui](https://openpsychometrics.org/_rawdata/IPIP-FFM-data-8Nov2018.zip). Após o download, basta descompactar o _.zip_ e colocar o arquivo chamado "_data-final.csv_" na pasta _data_, que pode ser acessar pelo caminho: `tcc/bigfivetest/data/`.
 
 Após instalar as dependências em um ambiente virtual ou na instalação padrão do Python em sua máquina, basta seguir os seguintes passos, de acordo com o local onde foram instaladas as dependências:
 
